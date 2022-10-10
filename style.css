@@ -1,0 +1,9 @@
+.category-list td{
+    padding-right: 15px;
+    /* text-align: left; */
+   
+}
+.list{
+    text-align:left;
+    cursor: pointer;
+}

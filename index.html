@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API data fetching</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div>
+            <button id="fetch_all">All students</button>
+            <button id="fetch_gryffindor">Gryffindor</button>
+            <button id="fetch_slytherin">Slytherin</button>
+            <button id="fetch_hufflepuff">Hufflepuff</button>
+            <button id="fetch_ravenclaw">Ravenclaw</button>
+            <button id="fetch_favorites">Favorites</button>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr class="category-list">
+                        <td>Name</td>
+                        <td>Date of birth</td>
+                        <td>House</td>
+                        <td>Wizard</td>
+                        <td>Ancestry</td>
+                        <td>Title</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="student_data">
+                        <th>joe</th>
+                        <th>may19</th>
+                        <th>tent</th>
+                        <th>unknown</th>
+                        <th>bloody</th>
+                        <th>brave</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
