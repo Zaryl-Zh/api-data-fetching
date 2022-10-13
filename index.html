@@ -11,22 +11,22 @@
     <main>
         <div>
             <button id="fetch_all">All students</button>
-            <button id="fetch_gryffindor">Gryffindor</button>
-            <button id="fetch_slytherin">Slytherin</button>
-            <button id="fetch_hufflepuff">Hufflepuff</button>
-            <button id="fetch_ravenclaw">Ravenclaw</button>
-            <button id="fetch_favorites">Favorites</button>
+            <button id="fetch_gryffindor">Students from Gryffindor</button>
+            <button id="fetch_slytherin">Students from Slytherin</button>
+            <button id="fetch_hufflepuff">Students from Hufflepuff</button>
+            <button id="fetch_ravenclaw">Students from Ravenclaw</button>
+            <button id="fetch_favorites">Students from Favorites</button>
         </div>
         <div>
             <table id="student_data">
                 <thead>
                     <tr class="category-list">
-                        <td>Name</td>
-                        <td>Date of birth</td>
-                        <td>House</td>
+                        <td style="cursor: pointer;" data-sort="name" class="sort_name">Name</td>
+                        <td style="cursor: pointer;" data-sort="house" class="sort_house">House</td>
+                        <td style="cursor: pointer;" data-sort="birthdate" class="sort_birthdate">Date of birth</td>
                         <td>Wizard</td>
                         <td>Ancestry</td>
-                        <td>Title</td>
+                        <td>Is Student</td>
                     </tr>
                 </thead>
             </table>

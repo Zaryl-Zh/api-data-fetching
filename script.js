@@ -1,17 +1,8 @@
 let studentData = document.createElement('tbody');
 let table=document.getElementById('student_data')
 
-const htmlTable = (value) => {
-     return `
-<tr>
-   <th>${value.name}</th>
-   <th>${value.dateOfBirth}</th>
-   <th>${value.house}</th>
-   <th>${value.wizard}</th>
-   <th>${value.ancestry}</th>
-   <th>${value.hogwartsStudent}</th>
-</tr>`
-}
+let sortAsc = false;
+let sortColumn, students, studentSort;
 
 const URL = 'https://hp-api.herokuapp.com/api/characters/students'
 
@@ -19,36 +10,93 @@ const URL = 'https://hp-api.herokuapp.com/api/characters/students'
          await fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-            const students = data
-            .map(student=>{
-                if( value.length > 0 && student.house == value){
-                    return htmlTable(student);
-                } 
-                else if( value.length == 0) {
-                    return htmlTable(student)
-                }
-                    
-            }).join('');
-    
-              studentData.innerHTML = students;
-              table.appendChild(studentData);
+             studentSort = data;
+             students = studentSort
+             htmlTable(value)
+           
         });
-    }
+        document.querySelectorAll('#student_data thead tr td').forEach(t => {
+            t.addEventListener('click', sort, false);
+            console.log('quiering on sort');
+     });
 
+        
+    }
+     
+    const htmlTable = (value) => {
+        let final = ''
+        students.map(student=>{
+        //    let st =student
+        //    st.dateOfBirth.toString()
+            if( value.length > 0 && student.house == value ){
+            
+               
+             return final+=` <tr>
+                <th>${student.name}</th>
+                <th>${student.house}</th>
+                <th>${student.dateOfBirth}</th>
+                <th>${student.wizard}</th>
+                <th>${student.ancestry}</th>
+                <th>${student.hogwartsStudent}</th>
+            </tr>`
+            } 
+            else if( value.length == 0) {
+
+             return final+=` <tr>
+                <th>${student.name}</th>
+                <th>${student.house}</th>
+                <th>${student.dateOfBirth}</th>
+                <th>${student.wizard}</th>
+                <th>${student.ancestry}</th>
+                <th>${student.hogwartsStudent}</th>
+            </tr>`
+            }
+                
+        }).join('');
+
+          studentData.innerHTML = final;
+          table.appendChild(studentData);
+          
+   }
+
+   function sort(event) {
+    let value = '';
+       let sorted = event.target.dataset.sort;
+       if(sortColumn === sorted) sortAsc=!sortAsc;
+       sortColumn = sorted;
+       let result = studentSort
+       result.sort((a,b) => {
+        console.log(a[sortColumn]);
+        if(a[sortColumn] > b[sortColumn] ) 
+        return sortAsc?1:-1;
+        if(a[sortColumn] < b[sortColumn]) 
+        return sortAsc?-1:1;
+        return 0;
+       })
+       htmlTable(value)
+       }
+
+   
 const renderAllStudents = () => {
     fetchRequest('')
+    // htmlTable('')
 };
 const renderGryffindor = () =>{
     fetchRequest('Gryffindor')
+  
 }
 const renderSlytherin = () => {
     fetchRequest('Slytherin')
+   
 }
 const renderHufflepuff = () => { 
     fetchRequest('Hufflepuff') 
+ 
+
 }
 const renderRavenclaw = () => { 
     fetchRequest('Ravenclaw')
+    
 }
 
 const allStudents = document.getElementById('fetch_all');
